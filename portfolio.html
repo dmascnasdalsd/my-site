@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人作品集</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#4080FF',
+                        accent: '#00C2B8',
+                        purple: '#7B61FF',
+                        light: '#F5F7FA',
+                        dark: '#333333',
+                        mint: '#E8F5F0'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .page-transition {
+                animation: fadeIn 0.3s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .nav-icon {
+                transition: all 0.3s ease;
+            }
+            .nav-icon:hover {
+                transform: scale(1.1);
+                color: #165DFF;
+            }
+            .nav-icon.active {
+                color: #165DFF;
+                transform: scale(1.15);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-mint via-white to-blue-50 min-h-screen text-dark font-sans">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-white bg-opacity-95 shadow-sm z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary">个人作品集</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="nav-icon" data-route="home" title="首页">
+                    <i class="fa fa-home text-2xl"></i>
+                </a>
+                <a href="#projects" class="nav-icon" data-route="projects" title="项目">
+                    <i class="fa fa-briefcase text-2xl"></i>
+                </a>
+                <a href="#about" class="nav-icon" data-route="about" title="关于我">
+                    <i class="fa fa-user text-2xl"></i>
+                </a>
+                <a href="#education" class="nav-icon" data-route="education" title="教育背景">
+                    <i class="fa fa-graduation-cap text-2xl"></i>
+                </a>
+            </div>
+            <button class="md:hidden text-gray-600 focus:outline-none" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </nav>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-white border-t" id="mobile-menu">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#home" class="nav-icon flex items-center space-x-2 py-2" data-route="home">
+                    <i class="fa fa-home text-xl"></i>
+                    <span>首页</span>
+                </a>
+                <a href="#projects" class="nav-icon flex items-center space-x-2 py-2" data-route="projects">
+                    <i class="fa fa-briefcase text-xl"></i>
+                    <span>项目</span>
+                </a>
+                <a href="#about" class="nav-icon flex items-center space-x-2 py-2" data-route="about">
+                    <i class="fa fa-user text-xl"></i>
+                    <span>关于我</span>
+                </a>
+                <a href="#education" class="nav-icon flex items-center space-x-2 py-2" data-route="education">
+                    <i class="fa fa-graduation-cap text-xl"></i>
+                    <span>教育背景</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面容器 -->
+    <main id="main-content" class="pt-20">
+        <!-- 首页模块 -->
+        <section id="home" class="page-section min-h-screen flex items-center justify-center py-20">
+            <div class="container mx-auto px-4 text-center page-transition">
+                <div class="max-w-3xl mx-auto">
+                    <div class="mb-8">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-purple flex items-center justify-center">
+                            <i class="fa fa-user text-6xl text-white"></i>
+                        </div>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 text-primary text-shadow">邓彬</h1>
+                    <p class="text-2xl md:text-3xl mb-8 text-gray-600">后端实习⽣</p>
+                    <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 text-gray-500 leading-relaxed">
+                        随时到岗 | 专注于后端开发和AI应用<br>
+                        热爱解决复杂问题，创造有价值的技术产品
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4 mb-10">
+                        <span class="px-4 py-2 bg-white rounded-full shadow-md text-primary">
+                            <i class="fa fa-check-circle mr-2"></i>Spring Boot
+                        </span>
+                        <span class="px-4 py-2 bg-white rounded-full shadow-md text-primary">
+                            <i class="fa fa-check-circle mr-2"></i>Spring AI
+                        </span>
+                        <span class="px-4 py-2 bg-white rounded-full shadow-md text-primary">
+                            <i class="fa fa-check-circle mr-2"></i>微服务架构
+                        </span>
+                        <span class="px-4 py-2 bg-white rounded-full shadow-md text-primary">
+                            <i class="fa fa-check-circle mr-2"></i>Redis
+                        </span>
+                    </div>
+                    <button onclick="router.navigate('projects')" class="inline-block bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white font-medium py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer border-none">
+                        <i class="fa fa-rocket mr-2"></i>查看我的项目
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目模块 -->
+        <section id="projects" class="page-section hidden min-h-screen py-20">
+            <div class="container mx-auto px-4 page-transition">
+                <h2 class="text-4xl font-bold text-center mb-16 text-primary">
+                    <i class="fa fa-briefcase mr-3"></i>我的项目
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <!-- 项目 1 -->
+                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('project1-detail')">
+                        <div class="h-56 bg-gradient-to-br from-blue-400 to-purple-500 relative flex items-center justify-center">
+                            <i class="fa fa-robot text-8xl text-white opacity-80"></i>
+                            <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full text-sm text-primary font-medium">
+                                <i class="fa fa-arrow-right mr-1"></i>查看详情
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-4 text-primary">恋⼼智能陪伴助⼿</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                基于 Spring Boot 3 + Spring AI 构建的企业级 AI 陪伴助⼿，整合 RAG、Tool Calling、MCP 核⼼能⼒，⽀持本地与云端⼤模型灵活切换。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-3 py-1 bg-blue-50 text-primary text-sm rounded-full font-medium">Spring Boot 3</span>
+                                <span class="px-3 py-1 bg-blue-50 text-primary text-sm rounded-full font-medium">Spring AI</span>
+                                <span class="px-3 py-1 bg-blue-50 text-primary text-sm rounded-full font-medium">PGvector</span>
+                                <span class="px-3 py-1 bg-blue-50 text-primary text-sm rounded-full font-medium">Redis</span>
+                                <span class="px-3 py-1 bg-blue-50 text-primary text-sm rounded-full font-medium">Ollama</span>
+                                <span class="px-3 py-1 bg-blue-50 text-primary text-sm rounded-full font-medium">Docker</span>
+                            </div>
+                            <div class="border-t pt-4">
+                                <h4 class="font-semibold mb-2 text-gray-700">核心亮点：</h4>
+                                <ul class="text-gray-600 space-y-1 text-sm">
+                                    <li><i class="fa fa-check text-accent mr-2"></i>技术前沿，贴合行业趋势</li>
+                                    <li><i class="fa fa-check text-accent mr-2"></i>RAG检索精准度提升30%以上</li>
+                                    <li><i class="fa fa-check text-accent mr-2"></i>解决Agent Loop死循环问题</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目 2 -->
+                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('project2-detail')">
+                        <div class="h-56 bg-gradient-to-br from-orange-400 to-red-500 relative flex items-center justify-center">
+                            <i class="fa fa-ticket text-8xl text-white opacity-80"></i>
+                            <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full text-sm text-orange-600 font-medium">
+                                <i class="fa fa-arrow-right mr-1"></i>查看详情
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-4 text-primary">商惠通优惠券运营平台</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                基于 SpringBoot3 + 微服务架构构建的⾼并发优惠券营销系统，⽀持优惠券创建、秒杀、分发、核销、结算全流程。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-3 py-1 bg-orange-50 text-orange-600 text-sm rounded-full font-medium">SpringBoot3</span>
+                                <span class="px-3 py-1 bg-orange-50 text-orange-600 text-sm rounded-full font-medium">SpringCloudAlibaba</span>
+                                <span class="px-3 py-1 bg-orange-50 text-orange-600 text-sm rounded-full font-medium">Redis</span>
+                                <span class="px-3 py-1 bg-orange-50 text-orange-600 text-sm rounded-full font-medium">RocketMQ</span>
+                                <span class="px-3 py-1 bg-orange-50 text-orange-600 text-sm rounded-full font-medium">MySQL</span>
+                                <span class="px-3 py-1 bg-orange-50 text-orange-600 text-sm rounded-full font-medium">ShardingSphere</span>
+                            </div>
+                            <div class="border-t pt-4">
+                                <h4 class="font-semibold mb-2 text-gray-700">核心亮点：</h4>
+                                <ul class="text-gray-600 space-y-1 text-sm">
+                                    <li><i class="fa fa-check text-accent mr-2"></i>高并发高可用，支撑百万级业务场景</li>
+                                    <li><i class="fa fa-check text-accent mr-2"></i>细节打磨到位，保障业务准确性与安全性</li>
+                                    <li><i class="fa fa-check text-accent mr-2"></i>大数据量处理，优化查询性能</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于我模块 -->
+        <section id="about" class="page-section hidden min-h-screen py-20">
+            <div class="container mx-auto px-4 page-transition">
+                <h2 class="text-4xl font-bold text-center mb-16 text-primary">
+                    <i class="fa fa-user mr-3"></i>关于我
+                </h2>
+                <div class="max-w-4xl mx-auto">
+                    <!-- 个人简介卡片 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                            <i class="fa fa-id-card mr-3"></i>个人简介
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed text-lg">
+                            我是一名后端开发实习生，专注于Java后端开发和AI应用技术。我热爱解决复杂问题，创造有价值的技术产品。
+                            我熟悉Spring Boot、微服务架构、消息中间件等后端技术栈，同时对AI技术如RAG、Tool Calling等有深入了解。
+                            我具备良好的学习能力和团队协作精神，随时准备加入新的团队并贡献自己的力量。
+                        </p>
+                    </div>
+
+                    <!-- 技能展示 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold mb-8 text-primary flex items-center">
+                            <i class="fa fa-cogs mr-3"></i>专业技能
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- 技术技能 -->
+                            <div>
+                                <h4 class="font-semibold mb-4 text-gray-700 flex items-center">
+                                    <i class="fa fa-code mr-2 text-primary"></i>技术技能
+                                </h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-2 bg-blue-50 text-primary rounded-lg text-sm font-medium">Java 后端开发</span>
+                                    <span class="px-3 py-2 bg-blue-50 text-primary rounded-lg text-sm font-medium">Redis</span>
+                                    <span class="px-3 py-2 bg-blue-50 text-primary rounded-lg text-sm font-medium">JUC 并发</span>
+                                    <span class="px-3 py-2 bg-blue-50 text-primary rounded-lg text-sm font-medium">RocketMQ</span>
+                                    <span class="px-3 py-2 bg-blue-50 text-primary rounded-lg text-sm font-medium">Spring AI</span>
+                                    <span class="px-3 py-2 bg-blue-50 text-primary rounded-lg text-sm font-medium">RAG</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 工具技能 -->
+                            <div>
+                                <h4 class="font-semibold mb-4 text-gray-700 flex items-center">
+                                    <i class="fa fa-wrench mr-2 text-primary"></i>工具技能
+                                </h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">Git</span>
+                                    <span class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">Docker</span>
+                                    <span class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">MySQL</span>
+                                    <span class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">Spring Cloud</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教育背景模块 -->
+        <section id="education" class="page-section hidden min-h-screen py-20">
+            <div class="container mx-auto px-4 page-transition">
+                <h2 class="text-4xl font-bold text-center mb-16 text-primary">
+                    <i class="fa fa-graduation-cap mr-3"></i>教育背景
+                </h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-primary to-secondary"></div>
+                        <div class="pl-6">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-primary mb-2">武汉轻⼯⼤学</h3>
+                                    <p class="text-gray-600 text-lg">软件⼯程（本科）</p>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full font-medium">
+                                        <i class="fa fa-calendar mr-2"></i>2024-06 - 2028-06
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="border-t pt-6">
+                                <h4 class="font-bold mb-4 text-gray-700 flex items-center">
+                                    <i class="fa fa-trophy mr-2 text-yellow-500"></i>荣誉奖项
+                                </h4>
+                                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 border border-yellow-200">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4">
+                                            <i class="fa fa-award text-white text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-gray-800">蓝桥杯软件赛</h5>
+                                            <p class="text-primary font-semibold">省一等奖</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <h4 class="font-bold mb-4 text-gray-700 flex items-center">
+                                    <i class="fa fa-book mr-2 text-primary"></i>主修课程
+                                </h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">数据结构与算法</span>
+                                    <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">操作系统</span>
+                                    <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">计算机网络</span>
+                                    <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">数据库原理</span>
+                                    <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">软件工程</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目1详情页 -->
+        <section id="project1-detail" class="page-section hidden min-h-screen py-20">
+            <div class="container mx-auto px-4 page-transition">
+                <div class="max-w-5xl mx-auto">
+                    <!-- 返回按钮 -->
+                    <button onclick="router.navigate('projects')" class="mb-8 flex items-center text-primary hover:text-secondary transition-colors">
+                        <i class="fa fa-arrow-left mr-2"></i>返回项目列表
+                    </button>
+
+                    <!-- 项目标题 -->
+                    <div class="text-center mb-12">
+                        <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                            <i class="fa fa-robot text-5xl text-white"></i>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-primary">恋⼼智能陪伴助⼿</h1>
+                        <p class="text-xl text-gray-600">基于 Spring Boot 3 + Spring AI 的企业级 AI 陪伴助手</p>
+                    </div>
+
+                    <!-- 技术栈 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h2 class="text-2xl font-bold mb-6 text-primary">
+                            <i class="fa fa-code mr-3"></i>技术架构
+                        </h2>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-blue-50 text-primary rounded-lg font-medium">Spring Boot 3</span>
+                            <span class="px-4 py-2 bg-blue-50 text-primary rounded-lg font-medium">Spring AI</span>
+                            <span class="px-4 py-2 bg-blue-50 text-primary rounded-lg font-medium">PGvector</span>
+                            <span class="px-4 py-2 bg-blue-50 text-primary rounded-lg font-medium">Redis</span>
+                            <span class="px-4 py-2 bg-blue-50 text-primary rounded-lg font-medium">Ollama</span>
+                            <span class="px-4 py-2 bg-blue-50 text-primary rounded-lg font-medium">Docker</span>
+                            <span class="px-4 py-2 bg-blue-50 text-primary rounded-lg font-medium">阿里云百炼</span>
+                        </div>
+                    </div>
+
+                    <!-- 难点1：RAG知识库检索 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-exclamation-triangle text-red-500 text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-primary">难点1：RAG知识库检索精准度低</h2>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-semibold mb-3 text-gray-700">问题描述</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                文档切片不合理、向量存储匹配度不足，导致AI检索时无法精准匹配用户查询意图，出现回复偏离、无关信息过多的情况，影响用户体验。
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold mb-4 text-gray-700">解决方法</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">1</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">优化文档切片策略</h4>
+                                        <p class="text-gray-600 text-sm">基于TokenTextSplitter自定义切片规则，配置合理的分块大小和重叠比例，确保文本语义完整性，避免切片过细或过粗导致的语义断裂。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">2</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">增强向量检索能力</h4>
+                                        <p class="text-gray-600 text-sm">结合KeywordMetadataEnricher实现AI智能关键词提取，为文档添加元信息标注（如场景标签、核心关键词），通过FilterExpressionBuilder构造过滤规则，实现精准筛选。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">3</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">优化查询策略</h4>
+                                        <p class="text-gray-600 text-sm">集成MultiQueryExpander多查询扩展、RewriteQueryTransformer查询重写机制，将用户原始查询扩展为多个语义相关变体，提升检索召回率和精准度。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">4</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">调试优化参数</h4>
+                                        <p class="text-gray-600 text-sm">通过反复测试，调整PGvector向量数据库的相似度阈值、返回文档数量，平衡检索速度和精准度。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 难点2：Agent Loop死循环 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-exclamation-triangle text-red-500 text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-primary">难点2：AI智能体易陷入Agent Loop死循环</h2>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-semibold mb-3 text-gray-700">问题描述</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                基于ReAct模式构建的自主规划智能体，在处理复杂任务（如多步骤工具调用、任务分解）时，容易出现重复执行同一操作、无法判断任务是否完成的情况，导致系统资源浪费、响应超时。
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold mb-4 text-gray-700">解决方法</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">1</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">增加死循环检测机制</h4>
+                                        <p class="text-gray-600 text-sm">设置任务执行最大步骤限制，记录智能体每一步的执行状态，若出现重复操作或步骤超时，自动触发中断逻辑。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">2</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">开发终止工具</h4>
+                                        <p class="text-gray-600 text-sm">自定义终止工具，通过Prompt工程优化智能体判断逻辑，让AI能够自主识别任务完成条件（如目标达成、无可用工具），主动调用终止工具结束流程。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">3</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">优化任务规划逻辑</h4>
+                                        <p class="text-gray-600 text-sm">参考OpenManus源码，实现分层智能体架构（BaseAgent、ReActAgent），明确任务分解、工具选择、结果校验的流程，减少无效循环。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">4</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">增加状态管理</h4>
+                                        <p class="text-gray-600 text-sm">维护智能体执行状态（待执行、执行中、已完成、异常），每一步执行后校验结果，确保任务按预期推进。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 项目亮点 -->
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold mb-6 text-primary">
+                            <i class="fa fa-trophy mr-3"></i>项目亮点
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white rounded-xl p-6 shadow-sm">
+                                <div class="flex items-center mb-3">
+                                    <i class="fa fa-money text-primary text-2xl mr-3"></i>
+                                    <h3 class="font-bold text-gray-800">技术前沿</h3>
+                                </div>
+                                <p class="text-gray-600 text-sm">聚焦AI超级智能体核心技术，整合Spring AI、RAG、Tool Calling、MCP等前沿技术，实现自主规划、多工具调用、多模型适配，贴合当前AI应用开发的主流方向。</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-sm">
+                                <div class="flex items-center mb-3">
+                                    <i class="fa fa-money text-primary text-2xl mr-3"></i>
+                                    <h3 class="font-bold text-gray-800">核心突破</h3>
+                                </div>
+                                <p class="text-gray-600 text-sm">针对RAG检索精准度、Agent Loop死循环等核心难点，设计可落地的解决方案，将RAG检索精准度提升30%以上，解决智能体死循环问题，确保系统稳定性和用户体验。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目2详情页 -->
+        <section id="project2-detail" class="page-section hidden min-h-screen py-20">
+            <div class="container mx-auto px-4 page-transition">
+                <div class="max-w-5xl mx-auto">
+                    <!-- 返回按钮 -->
+                    <button onclick="router.navigate('projects')" class="mb-8 flex items-center text-orange-600 hover:text-orange-800 transition-colors">
+                        <i class="fa fa-arrow-left mr-2"></i>返回项目列表
+                    </button>
+
+                    <!-- 项目标题 -->
+                    <div class="text-center mb-12">
+                        <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
+                            <i class="fa fa-ticket text-5xl text-white"></i>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-primary">商惠通优惠券运营平台</h1>
+                        <p class="text-xl text-gray-600">基于 SpringBoot3 + 微服务架构的高并发优惠券营销系统</p>
+                    </div>
+
+                    <!-- 技术栈 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h2 class="text-2xl font-bold mb-6 text-primary">
+                            <i class="fa fa-code mr-3"></i>技术架构
+                        </h2>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">SpringBoot3</span>
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">SpringCloudAlibaba</span>
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">Nacos</span>
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">Redis</span>
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">RocketMQ 5.x</span>
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">MySQL</span>
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">ShardingSphere</span>
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">Sentinel</span>
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">XXL Job</span>
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">Redisson</span>
+                            <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg font-medium">ElasticSearch</span>
+                        </div>
+                    </div>
+
+                    <!-- 难点1：高并发场景下优惠券分发问题 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-exclamation-triangle text-red-500 text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-primary">难点1：高并发场景下优惠券分发漏发、多发，库存一致性难以保障</h2>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-semibold mb-3 text-gray-700">问题描述</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                项目需支持百万级别用户优惠券分发，高峰期（如秒杀、大额券推送）并发请求量激增，易出现库存扣减异常、优惠券漏发、多发，以及分布式场景下库存数据不一致的问题，严重影响业务准确性和用户体验。
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold mb-4 text-gray-700">解决方法</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">1</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">采用MySQL悲观行记录锁</h4>
+                                        <p class="text-gray-600 text-sm">在优惠券分发过程中，通过悲观锁锁定库存记录，确保库存不会被多扣，同时搭配自旋重试机制，直至库存扣减至零，避免并发扣减异常。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">2</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">实现幂等性控制</h4>
+                                        <p class="text-gray-600 text-sm">在用户优惠券表创建唯一索引，限制用户单张优惠券只能领取一次，发放时捕获数据库重复记录异常，采用乐观自旋机制反复尝试，确保不重复发放。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">3</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">优化分发流程</h4>
+                                        <p class="text-gray-600 text-sm">通过执行点位和批量处理优化推送业务，保障项目断电后可从上次执行位置继续分发，避免漏发，同时提升分发效率，适配高并发场景。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">4</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">消息队列兜底</h4>
+                                        <p class="text-gray-600 text-sm">利用RocketMQ 5.x解耦优惠券推送与通知逻辑，通过消息重试机制，确保消息不丢失，进一步保障分发的准确性。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 难点2：大数据量处理导致内存溢出、响应缓慢 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-exclamation-triangle text-red-500 text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-primary">难点2：大数据量处理导致内存溢出、响应缓慢</h2>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-semibold mb-3 text-gray-700">问题描述</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                商家推送优惠券时，需解析百万量级用户Excel文件，易出现内存溢出；用户查询可用/不可用优惠券列表时，涉及多表关联、大量数据查询，导致接口响应缓慢，影响用户体验。
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold mb-4 text-gray-700">解决方法</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">1</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">优化Excel解析</h4>
+                                        <p class="text-gray-600 text-sm">使用EasyExcel解析百万量级Excel文件，采用分片读取、异步处理方式，避免因文件过大导致的内存溢出问题。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">2</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">异步提升响应速度</h4>
+                                        <p class="text-gray-600 text-sm">通过ThreadPoolExecutor线程池和Redisson延时队列，异步执行Excel文件行数解析，降低优惠券推送接口的响应时间。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">3</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">缓存优化查询性能</h4>
+                                        <p class="text-gray-600 text-sm">使用Redis Pipeline管道命令获取优惠券模板详情，将查询性能提升一倍以上，适配大量用户查询场景。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">4</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">分库分表扩容</h4>
+                                        <p class="text-gray-600 text-sm">采用ShardingSphere分库分表方案，存储大量商家创建的优惠券模板数据，提升存储和查询效率，应对大数据量存储需求。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 难点3：缓存异常及数据一致性问题 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fa fa-exclamation-triangle text-red-500 text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-primary">难点3：缓存异常及缓存与数据库数据一致性问题</h2>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-semibold mb-3 text-gray-700">问题描述</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                优惠券查询、用户预约提醒等场景频繁依赖缓存，易出现缓存击穿、穿透问题，导致大量请求直接打向数据库，造成数据库压力激增；同时存在数据库数据更新后，缓存未及时同步，出现数据不一致的情况。
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold mb-4 text-gray-700">解决方法</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">1</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">防御缓存异常</h4>
+                                        <p class="text-gray-600 text-sm">采用布隆过滤器、缓存空值、分布式锁三重方案，防止恶意请求导致的缓存击穿和穿透，减少数据库压力。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">2</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">保障数据一致性</h4>
+                                        <p class="text-gray-600 text-sm">基于监听Binlog机制，异步同步数据库更新至Redis缓存，同时采用“写后查询”策略，应对Redis持久化或主从复制极端情况下的数据丢失问题，确保缓存与数据库数据一致。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">3</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">缓存结构优化</h4>
+                                        <p class="text-gray-600 text-sm">基于Redis ZSet数据结构存储用户已领取优惠券列表，以领取时间为Score进行倒序排序，既提升查询效率，又满足业务展示需求。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">4</div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">分布式锁控制</h4>
+                                        <p class="text-gray-600 text-sm">使用Redisson分布式锁，保障优惠券锁定、核销、退款等操作的同步执行，避免缓存与数据库操作冲突。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 项目亮点 -->
+                    <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold mb-6 text-primary">
+                            <i class="fa fa-trophy mr-3"></i>项目亮点
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white rounded-xl p-6 shadow-sm">
+                                <div class="flex items-center mb-3">
+                                    <i class="fa fa-money text-orange-600 text-2xl mr-3"></i>
+                                    <h3 class="font-bold text-gray-800">高并发高可用</h3>
+                                </div>
+                                <p class="text-gray-600 text-sm">针对优惠券分发、秒杀等核心业务，设计悲观锁、幂等性控制、消息队列重试等方案，解决高并发下库存不一致、漏发多发问题，可稳定支撑百万级用户优惠券分发，保障系统高可用。</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-sm">
+                                <div class="flex items-center mb-3">
+                                    <i class="fa fa-money text-orange-600 text-2xl mr-3"></i>
+                                    <h3 class="font-bold text-gray-800">细节打磨到位</h3>
+                                </div>
+                                <p class="text-gray-600 text-sm">针对缓存异常、重复请求、数据一致性等细节问题，设计多重防御方案；通过操作日志留痕、布隆过滤器、分布式锁等技术，确保业务操作可追溯、数据安全可靠，避免业务风险。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t py-6 mt-auto">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-500">© 2026 邓彬个人作品集. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 路由系统
+        const router = {
+            routes: ['home', 'projects', 'about', 'education', 'project1-detail', 'project2-detail'],
+            currentRoute: 'home',
+            
+            init() {
+                this.handleRoute();
+                this.bindEvents();
+                window.addEventListener('popstate', () => this.handleRoute());
+            },
+            
+            handleRoute() {
+                const hash = window.location.hash.slice(1) || 'home';
+                if (this.routes.includes(hash)) {
+                    this.navigate(hash, false);
+                }
+            },
+            
+            navigate(route, pushState = true) {
+                if (!this.routes.includes(route)) return;
+                
+                // 隐藏所有页面
+                document.querySelectorAll('.page-section').forEach(section => {
+                    section.classList.add('hidden');
+                });
+                
+                // 显示目标页面
+                const targetSection = document.getElementById(route);
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                    // 重新触发动画
+                    targetSection.classList.remove('page-transition');
+                    void targetSection.offsetWidth; // 强制重绘
+                    targetSection.classList.add('page-transition');
+                }
+                
+                // 更新导航状态
+                document.querySelectorAll('.nav-icon').forEach(icon => {
+                    icon.classList.remove('active');
+                    if (icon.dataset.route === route) {
+                        icon.classList.add('active');
+                    }
+                });
+                
+                // 更新浏览器历史
+                if (pushState) {
+                    window.history.pushState({ route }, '', `#${route}`);
+                }
+                
+                this.currentRoute = route;
+                
+                // 关闭移动端菜单
+                document.getElementById('mobile-menu').classList.add('hidden');
+                
+                // 滚动到顶部
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+
+        // 初始化路由
+        document.addEventListener('DOMContentLoaded', () => {
+            router.init();
+        });
+
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 导航点击事件
+        document.querySelectorAll('.nav-icon').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.preventDefault();
+                const route = this.dataset.route;
+                router.navigate(route);
+            });
+        });
+
+        // 滚动时导航栏效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
